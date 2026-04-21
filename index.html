@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Gaming Hub Pro</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:linear-gradient(black,#0a0a2a);
+color:white;
+}
+
+/* NAV */
+nav{
+display:flex;
+justify-content:space-between;
+padding:15px;
+background:black;
+}
+
+/* HERO */
+.hero{
+text-align:center;
+padding:20px;
+}
+
+/* JUEGOS */
+.game-container{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+padding:20px;
+}
+
+.game-card{
+width:200px;
+background:#1a1a1a;
+padding:10px;
+cursor:pointer;
+transition:0.3s;
+border:2px solid transparent;
+}
+
+.game-card:hover{
+transform:scale(1.1);
+border:2px solid cyan;
+box-shadow:0 0 15px cyan;
+}
+
+.game-card:hover h3{
+animation:glitch 0.4s infinite;
+}
+
+@keyframes glitch{
+0%{text-shadow:2px 2px red;}
+50%{text-shadow:-2px -2px blue;}
+100%{text-shadow:2px -2px green;}
+}
+
+/* MODAL (VENTANA DEL JUEGO) */
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.9);
+padding:20px;
+overflow:auto;
+}
+
+.modal-content{
+max-width:900px;
+margin:auto;
+background:#111;
+padding:20px;
+}
+
+.close{
+float:right;
+cursor:pointer;
+font-size:25px;
+}
+
+.price{
+color:lime;
+}
+
+button{
+padding:10px;
+background:cyan;
+border:none;
+cursor:pointer;
+}
+
+button:hover{
+background:white;
+}
+</style>
+
+</head>
+
+<body>
+
+<nav>
+<h1>Gaming Hub</h1>
+</nav>
+
+<section class="hero">
+<h2>Tienda de Videojuegos 🎮</h2>
+<p>Estilo Steam / Epic Games</p>
+</section>
+
+<!-- CATÁLOGO -->
+<div class="game-container">
+
+<div class="game-card" onclick="openGame('gta')">
+<img src="https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png" width="100%">
+<h3>GTA V</h3>
+<p>$29.99</p>
+</div>
+
+<div class="game-card" onclick="openGame('spiderman')">
+<img src="https://upload.wikimedia.org/wikipedia/en/3/32/Spider-Man_2_PS5_cover.jpg" width="100%">
+<h3>Spider-Man 2</h3>
+<p>$69.99</p>
+</div>
+
+<div class="game-card" onclick="openGame('fc')">
+<img src="https://upload.wikimedia.org/wikipedia/en/7/7c/EA_Sports_FC_24_cover.jpg" width="100%">
+<h3>FC 26</h3>
+<p>$59.99</p>
+</div>
+
+<div class="game-card" onclick="openGame('fortnite')">
+<img src="https://upload.wikimedia.org/wikipedia/en/0/09/Fortnite_box_art.jpg" width="100%">
+<h3>Fortnite</h3>
+<p>Gratis</p>
+</div>
+
+</div>
+
+<!-- MODAL -->
+<div id="modal" class="modal">
+<div class="modal-content">
+<span class="close" onclick="closeGame()">X</span>
+
+<h1 id="title"></h1>
+<p id="desc"></p>
+
+<!-- VIDEO -->
+<iframe id="video" width="100%" height="400" src="" frameborder="0" allowfullscreen></iframe>
+
+<h2 id="price" class="price"></h2>
+
+<button onclick="buyGame()">Comprar</button>
+
+</div>
+</div>
+
+<script>
+
+function openGame(game){
+
+document.getElementById("modal").style.display="block";
+
+if(game=="gta"){
+document.getElementById("title").innerText="GTA V";
+document.getElementById("desc").innerText="Mundo abierto en Los Santos con historia y online.";
+document.getElementById("price").innerText="$29.99";
+document.getElementById("video").src="https://www.youtube.com/embed/QkkoHAzjnUs";
+}
+
+if(game=="spiderman"){
+document.getElementById("title").innerText="Spider-Man 2";
+document.getElementById("desc").innerText="Aventura con Peter y Miles.";
+document.getElementById("price").innerText="$69.99";
+document.getElementById("video").src="https://www.youtube.com/embed/9fVYKsEmuRo";
+}
+
+if(game=="fc"){
+document.getElementById("title").innerText="FC 26";
+document.getElementById("desc").innerText="Simulador de fútbol realista.";
+document.getElementById("price").innerText="$59.99";
+document.getElementById("video").src="https://www.youtube.com/embed/XhP3Xh4LMA8";
+}
+
+if(game=="fortnite"){
+document.getElementById("title").innerText="Fortnite";
+document.getElementById("desc").innerText="Battle Royale con eventos en vivo.";
+document.getElementById("price").innerText="Gratis";
+document.getElementById("video").src="https://www.youtube.com/embed/2gUtfBmw86Y";
+}
+
+}
+
+function closeGame(){
+document.getElementById("modal").style.display="none";
+document.getElementById("video").src="";
+}
+
+function buyGame(){
+alert("Compra simulada 🛒");
+}
+
+</script>
+
+</body>
+</html>
